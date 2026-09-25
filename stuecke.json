@@ -1,0 +1,26 @@
+[
+  {
+    "id": "bach-bwv-847",
+    "titel": "Präludium und Fuge c-Moll",
+    "werknummer": "BWV 847",
+    "tonart": "c-Moll",
+    "intervallTage": 3,
+    "ersterTermin": "2026-09-25"
+  },
+  {
+    "id": "bach-goldberg-var-3",
+    "titel": "Goldberg-Variationen · Variation 3",
+    "werknummer": "BWV 988",
+    "tonart": "G-Dur",
+    "intervallTage": 2,
+    "ersterTermin": "2026-09-26"
+  },
+  {
+    "id": "beispiel-stueck-3",
+    "titel": "Beispielstück (bitte ersetzen)",
+    "werknummer": "–",
+    "tonart": "C-Dur",
+    "intervallTage": 7,
+    "ersterTermin": "2026-09-27"
+  }
+]
