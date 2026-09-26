@@ -1,0 +1,9 @@
+{
+  "name": "notabene",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local development server for the NotaBene static piano practice app",
+  "scripts": {
+    "dev": "node dev-server.cjs"
+  }
+}

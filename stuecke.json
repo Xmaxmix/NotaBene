@@ -1,26 +1,164 @@
 [
   {
-    "id": "bach-bwv-847",
-    "titel": "Präludium und Fuge c-Moll",
-    "werknummer": "BWV 847",
-    "tonart": "c-Moll",
-    "intervallTage": 3,
-    "ersterTermin": "2026-09-25"
+    "id": "bwv-772",
+    "titel": "Inventio 1",
+    "werknummer": "BWV 772",
+    "tonart": "C-Dur",
+    "intervallTage": 6,
+    "ersterTermin": "2026-09-28",
+    "dauerMinuten": 2
   },
   {
-    "id": "bach-goldberg-var-3",
-    "titel": "Goldberg-Variationen · Variation 3",
+    "id": "bwv-787",
+    "titel": "Sinfonia 1",
+    "werknummer": "BWV 787",
+    "tonart": "C-Dur",
+    "intervallTage": 4,
+    "ersterTermin": "2026-09-29",
+    "dauerMinuten": 2
+  },
+  {
+    "id": "bwv-788",
+    "titel": "Sinfonia 2",
+    "werknummer": "BWV 788",
+    "tonart": "C-Moll",
+    "intervallTage": 3,
+    "ersterTermin": "2026-09-28",
+    "dauerMinuten": 3
+  },
+  {
+    "id": "bwv-775",
+    "titel": "Inventio 4",
+    "werknummer": "BWV 775",
+    "tonart": "d-Moll",
+    "intervallTage": 7,
+    "ersterTermin": "2026-09-30",
+    "dauerMinuten": 3
+  },
+  {
+    "id": "bwv-790",
+    "titel": "Sinfonia 4",
+    "werknummer": "BWV 790",
+    "tonart": "d-Moll",
+    "intervallTage": 4,
+    "ersterTermin": "2026-09-28",
+    "dauerMinuten": 3
+  },
+  {
+    "id": "bwv-780",
+    "titel": "Inventio 9",
+    "werknummer": "BWV 780",
+    "tonart": "f-Moll",
+    "intervallTage": 5,
+    "ersterTermin": "2026-09-29",
+    "dauerMinuten": 2
+  },
+  {
+    "id": "bwv-795",
+    "titel": "Sinfonia 9",
+    "werknummer": "BWV 795",
+    "tonart": "f-Moll",
+    "intervallTage": 5,
+    "ersterTermin": "2026-09-28",
+    "dauerMinuten": 3
+  },
+  {
+    "id": "bwv-797",
+    "titel": "Sinfonia 11",
+    "werknummer": "BWV 797",
+    "tonart": "g-Moll",
+    "intervallTage": 3,
+    "ersterTermin": "2026-09-29",
+    "dauerMinuten": 2
+  },
+  {
+    "id": "bwv-846-prelude",
+    "titel": "WTK I Präludium 1",
+    "werknummer": "BWV 846",
+    "tonart": "C-Dur",
+    "intervallTage": 6,
+    "ersterTermin": "2026-09-30",
+    "dauerMinuten": 2
+  },
+  {
+    "id": "bwv-846-fugue",
+    "titel": "WTK I Fuge 1",
+    "werknummer": "BWV 846",
+    "tonart": "C-Dur",
+    "intervallTage": 3,
+    "ersterTermin": "2026-09-29",
+    "dauerMinuten": 3
+  },
+  {
+    "id": "bwv-988-variatio-2",
+    "titel": "GV Variatio 2",
     "werknummer": "BWV 988",
     "tonart": "G-Dur",
     "intervallTage": 2,
-    "ersterTermin": "2026-09-26"
+    "ersterTermin": "2026-09-28",
+    "dauerMinuten": 2
   },
   {
-    "id": "beispiel-stueck-3",
-    "titel": "Beispielstück (bitte ersetzen)",
-    "werknummer": "–",
-    "tonart": "C-Dur",
-    "intervallTage": 7,
-    "ersterTermin": "2026-09-27"
+    "id": "bwv-988-variatio-3",
+    "titel": "GV Variatio 3",
+    "werknummer": "BWV 988",
+    "tonart": "G-Dur",
+    "intervallTage": 2,
+    "ersterTermin": "2026-09-28",
+    "dauerMinuten": 2
+  },
+  {
+    "id": "bwv-988-variatio-15",
+    "titel": "GV Variatio 15 Canone alla Quinta",
+    "werknummer": "BWV 988",
+    "tonart": "g-Moll",
+    "intervallTage": 2,
+    "ersterTermin": "2026-09-28",
+    "dauerMinuten": 2
+  },
+  {
+    "id": "bwv-988-variatio-21",
+    "titel": "GV Variatio 21 Canone alla Settima",
+    "werknummer": "BWV 988",
+    "tonart": "g-Moll",
+    "intervallTage": 3,
+    "ersterTermin": "2026-09-27",
+    "dauerMinuten": 3
+  },
+  {
+    "id": "bwv-988-variatio-22",
+    "titel": "GV Variatio 22 Alla Breve",
+    "werknummer": "BWV 988",
+    "tonart": "g-Dur",
+    "intervallTage": 4,
+    "ersterTermin": "2026-09-27",
+    "dauerMinuten": 2
+  },
+  {
+    "id": "bwv-988-variatio-25",
+    "titel": "GV Variatio 25 adagio",
+    "werknummer": "BWV 988",
+    "tonart": "g-Moll",
+    "intervallTage": 2,
+    "ersterTermin": "2026-09-27",
+    "dauerMinuten": 8
+  },
+  {
+    "id": "bwv-1068",
+    "titel": "Air",
+    "werknummer": "BWV 1068",
+    "tonart": "D-Dur",
+    "intervallTage": 5,
+    "ersterTermin": "2026-09-27",
+    "dauerMinuten": 3
+  },
+  {
+    "id": "bwv-147",
+    "titel": "Jesus bleibet meine Freude",
+    "werknummer": "BWV 147",
+    "tonart": "G-Dur",
+    "intervallTage": 4,
+    "ersterTermin": "2026-09-30",
+    "dauerMinuten": 3
   }
 ]

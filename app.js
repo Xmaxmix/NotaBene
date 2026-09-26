@@ -37,6 +37,8 @@ function validatePieces(data) {
     seen.add(p.id);
     for (const key of ["titel", "werknummer", "tonart"]) if (typeof p[key] !== "string" || !p[key].trim()) throw Error(`Feld ${key} fehlt bei ${p.id}.`);
     if (!Number.isSafeInteger(p.intervallTage) || p.intervallTage < 1 || p.intervallTage > 3650) throw Error(`Ungültiges intervallTage bei ${p.id}.`);
+    // Older repertoire files remain valid: a missing duration is treated as 0 minutes.
+    if (p.dauerMinuten !== undefined && (!Number.isSafeInteger(p.dauerMinuten) || p.dauerMinuten < 0 || p.dauerMinuten > 1440)) throw Error(`Ungültiges dauerMinuten bei ${p.id}.`);
     if (!Number.isFinite(dateToDay(p.ersterTermin))) throw Error(`Ungültiger ersterTermin bei ${p.id}.`);
     return p;
   });
@@ -73,7 +75,6 @@ function loggedDays(id, throughDay) {
 }
 function statusFor(piece, day, actualToday) {
   const first = dateToDay(piece.ersterTermin);
-  // An actual practice entry always wins, even if it predates the first scheduled date.
   const sessions = loggedDays(piece.id, actualToday);
   if (sessions.includes(day)) return "done";
   if (day < first && sessions.every(d => d > day)) return "";
@@ -119,9 +120,25 @@ function makeDayCell(piece, day) {
   else td.textContent = "·";
   return td;
 }
+function totalForDay(day) {
+  return pieces.reduce((sum, piece) => {
+    const state = statusFor(piece, day, todayDay);
+    const counted = day > todayDay ? state === "projected" : day === todayDay ? state === "due" || state === "late" || state === "done" : state === "done";
+    return sum + (counted ? (piece.dauerMinuten ?? 0) : 0);
+  }, 0);
+}
+function totalLabel(day) {
+  const minutes = totalForDay(day);
+  return minutes > 0 ? `${minutes} Min.` : "–";
+}
+function makeTotalCell(day) {
+  const td = makeCell("td", totalLabel(day), `total-cell${day === todayDay ? " today-col" : ""}`);
+  td.dataset.day = day;
+  return td;
+}
 function render(scrollTarget = null) {
   todayDay = localToday();
-  $("todayLabel").textContent = formatDay(todayDay, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  //$("todayLabel").textContent = formatDay(todayDay, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
   const head = $("head"), body = $("body");
   head.replaceChildren(); body.replaceChildren();
   const headRow = document.createElement("tr");
@@ -132,11 +149,19 @@ function render(scrollTarget = null) {
     const row = document.createElement("tr");
     const label = makeCell("th", null, "piece");
     label.scope = "row";
-    label.append(makeCell("strong", piece.titel), makeCell("small", `${piece.werknummer} · ${piece.tonart} · alle ${piece.intervallTage} Tage`));
+    const details = `${piece.werknummer} · ${piece.tonart} · alle ${piece.intervallTage} Tage${piece.dauerMinuten != null ? ` · ${piece.dauerMinuten} Min.` : ""}`;
+    label.append(makeCell("strong", piece.titel), makeCell("small", details));
     row.append(label);
     for (let d = startDay; d <= endDay; d++) row.append(makeDayCell(piece, d));
     body.append(row);
   }
+  const totalRow = document.createElement("tr");
+  totalRow.className = "total-row";
+  const totalHeading = makeCell("th", "Tagesdauer", "piece total-piece");
+  totalHeading.scope = "row";
+  totalRow.append(totalHeading);
+  for (let d = startDay; d <= endDay; d++) totalRow.append(makeTotalCell(d));
+  body.append(totalRow);
   if (scrollTarget !== null) scrollToDay(scrollTarget);
 }
 function scrollToDay(day) {

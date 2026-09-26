@@ -9,13 +9,15 @@
 <script src="app.js" defer></script>
 </head>
 <body>
-<header class="topbar"><div><h1>Klavier · Übeplan</h1><p>Ein Häkchen heute setzt den nächsten Termin.</p></div><span id="todayLabel"></span></header>
+<header class="topbar"><div><h1>NotaBene</h1></div><div class="toolbar"><button id="goToday" type="button">Heute anzeigen</button><button id="exportBtn" type="button">Backup exportieren</button><button id="importBtn" type="button">Backup importieren</button><input id="importFile" type="file" accept="application/json,.json" hidden></div>
+</header>
 <main>
-<div class="toolbar"><button id="goToday" type="button">Heute anzeigen</button><button id="exportBtn" type="button">Backup exportieren</button><button id="importBtn" type="button">Backup importieren</button><input id="importFile" type="file" accept="application/json,.json" hidden></div>
 <div id="notice" role="status" aria-live="polite"></div>
-<div class="legend"><span><i class="dot due"></i>Fällig</span><span><i class="dot late"></i>Überfällig</span><span><i class="dot done"></i>Geübt</span><span><i class="dot projected"></i>Voraussichtlich</span></div>
 <div id="viewport" class="viewport" aria-label="Übeplan"><table id="calendar"><thead id="head"></thead><tbody id="body"></tbody></table></div>
+<div class="legend"><span><i class="dot due"></i>Fällig</span><span><i class="dot late"></i>Überfällig</span><span><i class="dot done"></i>Geübt</span><span><i class="dot projected"></i>Voraussichtlich</span></div>
 <p class="hint">Die Stückliste steht in <code>stuecke.json</code>. Übungstage werden nur auf diesem Gerät gespeichert. Sichere sie gelegentlich mit „Backup exportieren“.</p>
+
 </main>
+<span id="todayLabel"></span>
 </body>
 </html>
