@@ -11,7 +11,6 @@ let logs = {};
 let startDay = 0;
 let endDay = 0;
 let todayDay = 0;
-let loadedDay = 0;
 let timer = null;
 let storageAvailable = false;
 const dateToDay = value => {
@@ -74,13 +73,14 @@ function loggedDays(id, throughDay) {
 }
 function statusFor(piece, day, actualToday) {
   const first = dateToDay(piece.ersterTermin);
-  if (day < first) return "";
+  // An actual practice entry always wins, even if it predates the first scheduled date.
   const sessions = loggedDays(piece.id, actualToday);
   if (sessions.includes(day)) return "done";
+  if (day < first && sessions.every(d => d > day)) return "";
   if (day > actualToday) {
     let next = sessions.length ? sessions.at(-1) + piece.intervallTage : first;
     if (next <= actualToday) next = actualToday + 1;
-    return (day - next) % piece.intervallTage === 0 && day >= next ? "projected" : "";
+    return day >= next && (day - next) % piece.intervallTage === 0 ? "projected" : "";
   }
   let last = null;
   for (const practiced of sessions) {
@@ -99,9 +99,7 @@ function makeCell(tag, text, className) {
 function makeHead(day) {
   const th = makeCell("th", null, day === todayDay ? "today-col" : "");
   th.dataset.day = day;
-  const label = makeCell("span", day === todayDay ? "Heute" : formatDay(day, { weekday: "short" }));
-  const small = makeCell("small", formatDay(day, { day: "2-digit", month: "2-digit", year: "numeric" }));
-  th.append(label, small);
+  th.append(makeCell("span", day === todayDay ? "Heute" : formatDay(day, { weekday: "short" })), makeCell("small", formatDay(day, { day: "2-digit", month: "2-digit", year: "numeric" })));
   return th;
 }
 function makeDayCell(piece, day) {
@@ -117,9 +115,8 @@ function makeDayCell(piece, day) {
     btn.setAttribute("aria-pressed", String(done));
     btn.addEventListener("click", () => toggleToday(piece.id));
     td.append(btn);
-  } else if (state) {
-    td.textContent = { due: "Fällig", late: "Überfällig", done: "✓ Geübt", projected: "Geplant" }[state];
-  } else td.textContent = "·";
+  } else if (state) td.textContent = { due: "Fällig", late: "Überfällig", done: "✓ Geübt", projected: "Geplant" }[state];
+  else td.textContent = "·";
   return td;
 }
 function render(scrollTarget = null) {
@@ -196,7 +193,7 @@ async function init() {
     if (!response.ok) throw Error(`Stückliste nicht geladen (HTTP ${response.status}).`);
     pieces = validatePieces(await response.json());
     logs = readLogs();
-    loadedDay = todayDay = localToday();
+    todayDay = localToday();
     startDay = todayDay - INITIAL_PAST_DAYS;
     endDay = todayDay + FUTURE_DAYS;
     render(todayDay);

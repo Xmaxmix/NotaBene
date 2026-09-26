@@ -1,28 +1,28 @@
-# Klavier-Übeplan
+# NotaBene
 
-Kleine, serverlose Web-App für ein iPad am Klavier. Die Website kann statisch auf GitHub Pages liegen; Übungseinträge bleiben im Browser-Speicher dieses iPads.
+A small, serverless piano practice planner designed for an iPad next to the piano. The static website can be hosted on GitHub Pages; practice records are stored locally in the browser on that iPad. The app interface is in German.
 
-## Dateien
+## Files
 
-- `index.html`: Oberfläche
-- `style.css`: Gestaltung
-- `app.js`: Kalender, Berechnung, Speicherung und Backup
-- `stuecke.json`: Stückliste mit drei Beispielen
+- `index.html`: User interface
+- `style.css`: Styling
+- `app.js`: Calendar, scheduling, storage, and backup
+- `stuecke.json`: Repertoire with three example entries
 
-Alle vier Dateien gehören ins **gleiche Verzeichnis**. Die App ist nicht zum direkten Öffnen von `index.html` über `file://` vorgesehen: `stuecke.json` wird per `fetch` geladen und benötigt einen Webserver (etwa GitHub Pages).
+All four files must be in the **same directory**. Do not open `index.html` directly using a `file://` URL: the app loads `stuecke.json` with `fetch` and needs to be served as a website, for example through GitHub Pages.
 
-## Auf GitHub Pages veröffentlichen
+## Publish on GitHub Pages
 
-1. Kostenloses GitHub-Konto erstellen oder vorhandenes Konto nutzen.
-2. Neues **öffentliches** Repository anlegen, zum Beispiel `klavier-uebeplan`. Die Stückliste und der Quellcode in diesem Repository sind öffentlich, nicht aber die auf dem iPad lokal gespeicherten Häkchen.
-3. Diese vier Dateien ins Hauptverzeichnis des Repositorys hochladen. Achte auf exakt gleiche Dateinamen.
-4. In den Repository-Einstellungen unter **Pages** die Veröffentlichung aus dem Branch `main` und dem Ordner `/ (root)` auswählen und speichern.
-5. Die dort angezeigte Website-Adresse in Safari auf dem iPad öffnen. Wenn die Seite anfangs noch nicht erreichbar ist, kurz warten und erneut laden.
-6. Über das Teilen-Menü in Safari **Zum Home-Bildschirm** wählen; wenn angeboten, **Als Web-App öffnen** aktivieren. Danach die App immer über dieses Symbol öffnen. Safari und Homescreen-Web-App können getrennte Speicherbereiche haben.
+1. Create a free GitHub account, or use an existing one.
+2. Create a **public** repository, such as `NotaBene`. The source code and repertoire JSON in a public repository are visible to everyone; practice records stored locally on your iPad are not uploaded to GitHub.
+3. Upload the four files to the root of the repository. Keep their filenames exactly as shown above.
+4. In the repository settings, open **Pages**, select deployment from the `main` branch and the `/ (root)` directory, then save.
+5. Open the GitHub Pages address shown there in Safari on your iPad. If the site is not immediately available, wait a moment and reload it.
+6. Use Safari’s Share menu to choose **Add to Home Screen**; enable **Open as Web App** if offered. From then on, open NotaBene using that Home Screen icon. A Home Screen web app and Safari may use separate storage.
 
-Zum Ändern eines Stücks die Datei `stuecke.json` im GitHub-Repository bearbeiten und die Website neu laden. Verwende keine doppelte `id` und ändere die `id` eines bereits genutzten Stücks nicht, sonst erscheinen seine bisherigen Häkchen nicht mehr unter diesem Stück. Die Beispieldaten dürfen vor dem ersten Gebrauch ersetzt werden. Wer nachträglich die Intervalle oder den ersten Termin ändert, ändert damit auch die rückwirkend berechneten historischen Fälligkeitsmarkierungen; tatsächliche Übungstage bleiben erhalten.
+To change your repertoire, edit `stuecke.json` in your GitHub repository and reload the website. Every piece needs a unique, stable `id`. Do not change an existing piece’s `id` after logging practice, or its previous entries will no longer appear under that piece. You can replace the examples before you start using the app. Changing a piece’s interval or first due date later will also change historical *calculated* due/overdue labels; actual practice dates remain stored.
 
-## Format der Stückliste
+## Repertoire format
 
 ```json
 [
@@ -37,18 +37,18 @@ Zum Ändern eines Stücks die Datei `stuecke.json` im GitHub-Repository bearbeit
 ]
 ```
 
-`ersterTermin` muss im Format `JJJJ-MM-TT` stehen; `intervallTage` ist eine positive ganze Zahl. `id` darf nur Kleinbuchstaben ohne Umlaute, Ziffern, Bindestriche und Unterstriche enthalten und muss eindeutig sein. Um ein neues Stück hinzuzufügen, ergänze ein weiteres Objekt mit Komma zwischen den Objekten. Als Datum gilt der lokale Kalendertag des iPads.
+`ersterTermin` uses the `YYYY-MM-DD` format; `intervallTage` is a positive integer. An `id` must be unique and contain only lowercase ASCII letters, digits, hyphens, and underscores; it must start with a letter or digit. To add a piece, add another JSON object, separating objects with commas. The app uses the iPad’s local calendar date for “today.”
 
-## Berechnung
+## Scheduling rules
 
-- Ein Stück ist am ersten Termin fällig, sofern es nicht geübt wurde.
-- Nach einer Übung wird es `intervallTage` Kalendertage später wieder fällig.
-- Wird ein Fälligkeitstag ausgelassen, bleibt das Stück bis zum tatsächlichen Üben täglich als überfällig markiert. Die alte Wiederholung wird nicht nachgeholt oder mehrfach aufaddiert.
-- Vergangene Zellen zeigen den damaligen Zustand auf Basis der gespeicherten Übungstage; nur die heutige Zelle ist anklickbar. Ein Häkchen heute kann am selben Tag zurückgenommen werden.
-- Zukünftige „Geplant“-Markierungen sind eine unverbindliche Vorschau: Wenn ein Stück heute bereits fällig oder überfällig ist, setzt die Vorschau eine mögliche Übung morgen voraus. Die tatsächliche künftige Folge beginnt erst, wenn du ein Häkchen setzt.
+- A piece is due on its first due date unless it has already been practiced.
+- After a practice session, the next due date is `intervallTage` calendar days later.
+- If a due date is missed, the piece stays marked overdue each day until it is actually practiced. Missed sessions are not added up or moved forward automatically.
+- Past cells show their status based on the recorded practice dates. Only today’s cell can be clicked. Today’s practice entry can be undone on the same day.
+- Future “Geplant” (planned) labels are provisional. If a piece is already due or overdue today, the preview assumes a possible session tomorrow; the real schedule resets only when you check off a session.
 
-## Datensicherung und Grenzen
+## Backups and limitations
 
-**Regelmäßig „Backup exportieren“** und die heruntergeladene JSON-Datei außerhalb der App aufbewahren. „Backup importieren“ ersetzt nach Rückfrage alle bisherigen Häkchen auf dem Gerät durch die Einträge im Backup; es verändert nicht die Stückliste. Löschen von Websitedaten, Neuinstallation oder Gerätewechsel kann lokal gespeicherte Häkchen entfernen. Private Browserfenster nicht verwenden. Die App ist nicht als Offline-Web-App eingerichtet: Zum Laden bzw. Aktualisieren braucht sie eine Internetverbindung. Wenn du später die Website-Adresse wechselst oder statt des Homescreen-Symbols Safari verwendest, können dort andere lokale Daten sichtbar sein; dann ein Backup importieren.
+Use **“Backup exportieren”** regularly and keep the downloaded JSON file outside the app. **“Backup importieren”** replaces all local practice records with the backup after confirmation; it does not change the repertoire. Clearing website data, reinstalling the app, or moving to another device can erase local practice records. Avoid private browsing. This release is **not** configured for offline use: loading or updating it requires an internet connection. Changing the website address or switching between the Home Screen icon and Safari may show different local records; import a backup if needed.
 
-Hinweis: Der Browser wurde hier nicht automatisiert auf einem iPad getestet. Nach dem Veröffentlichen empfiehlt sich ein kurzer Funktionstest mit einem Probe-Häkchen, Rücknahme, Backup-Export und -Import.
+The app has not been automatically tested on an iPad. After publishing it, try checking and unchecking a practice entry, then exporting and importing a test backup.
