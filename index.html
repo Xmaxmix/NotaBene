@@ -1,23 +1,46 @@
 <!doctype html>
 <html lang="de">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#202b40">
-<title>NotaBene - Practice Schedule</title>
-<link rel="stylesheet" href="style.css">
-<script src="app.js" defer></script>
-</head>
-<body>
-<header class="topbar"><div><h1>NotaBene</h1></div><div class="toolbar"><button id="goToday" type="button">Heute anzeigen</button><button id="exportBtn" type="button">Backup exportieren</button><button id="importBtn" type="button">Backup importieren</button><input id="importFile" type="file" accept="application/json,.json" hidden></div>
-</header>
-<main>
-<div id="notice" role="status" aria-live="polite"></div>
-<div id="viewport" class="viewport" aria-label="Übeplan"><table id="calendar"><thead id="head"></thead><tbody id="body"></tbody></table></div>
-<div class="legend"><span><i class="dot due"></i>Fällig</span><span><i class="dot late"></i>Überfällig</span><span><i class="dot done"></i>Geübt</span><span><i class="dot projected"></i>Voraussichtlich</span></div>
-<p class="hint">Die Stückliste steht in <code>stuecke.json</code>. Übungstage werden nur auf diesem Gerät gespeichert. Sichere sie gelegentlich mit „Backup exportieren“.</p>
-
-</main>
-<span id="todayLabel"></span>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+        <meta name="theme-color" content="#202b40" />
+        <title>NotaBene · Practice Agenda</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="app.js" defer></script>
+    </head>
+    <body>
+        <header class="topbar">
+            <div class="topbar-main">
+                <h1>NotaBene · Practice Agenda</h1>
+            </div>
+            <div class="toolbar">
+                <button id="goToday" type="button">Heute anzeigen</button
+                ><button id="exportBtn" type="button">Backup exportieren</button
+                ><button id="importBtn" type="button">Backup importieren</button
+                ><input id="importFile" type="file" accept="application/json,.json" hidden />
+            </div>
+        </header>
+        <main>
+            <div id="notice" role="status" aria-live="polite"></div>
+            <div id="viewport" class="viewport" aria-label="Übeplan">
+                <table id="calendar">
+                    <thead id="head"></thead>
+                    <tbody id="body"></tbody>
+                </table>
+            </div>
+            <footer>
+                <div class="footer-columns">
+                    <div id="repertoireMinutes" class="repertoire-total"></div>
+                    <div class="legend">
+                        <span><i class="dot due"></i>Fällig</span><span><i class="dot late"></i>Überfällig</span
+                        ><span><i class="dot done"></i>Geübt</span><span><i class="dot projected"></i>Voraussichtlich</span>
+                    </div>
+                </div>
+                <p class="hint">Ein Häkchen heute setzt den nächsten Termin.<br>
+                    Die Stückliste steht in <code>stuecke.json</code>. Übungstage werden nur auf diesem Gerät
+                    gespeichert. Sichere sie gelegentlich mit „Backup exportieren“.
+                </p>
+            </footer>
+        </main>
+    </body>
 </html>

@@ -13,6 +13,7 @@ let endDay = 0;
 let todayDay = 0;
 let timer = null;
 let storageAvailable = false;
+let expandedPieceId = null;
 const dateToDay = value => {
   if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return NaN;
   const [y, m, d] = value.split("-").map(Number);
@@ -37,7 +38,6 @@ function validatePieces(data) {
     seen.add(p.id);
     for (const key of ["titel", "werknummer", "tonart"]) if (typeof p[key] !== "string" || !p[key].trim()) throw Error(`Feld ${key} fehlt bei ${p.id}.`);
     if (!Number.isSafeInteger(p.intervallTage) || p.intervallTage < 1 || p.intervallTage > 3650) throw Error(`Ungültiges intervallTage bei ${p.id}.`);
-    // Older repertoire files remain valid: a missing duration is treated as 0 minutes.
     if (p.dauerMinuten !== undefined && (!Number.isSafeInteger(p.dauerMinuten) || p.dauerMinuten < 0 || p.dauerMinuten > 1440)) throw Error(`Ungültiges dauerMinuten bei ${p.id}.`);
     if (!Number.isFinite(dateToDay(p.ersterTermin))) throw Error(`Ungültiger ersterTermin bei ${p.id}.`);
     return p;
@@ -136,9 +136,18 @@ function makeTotalCell(day) {
   td.dataset.day = day;
   return td;
 }
+function repertoireMinutes() {
+  return pieces.reduce((sum, piece) => sum + (piece.dauerMinuten ?? 0), 0);
+}
+function togglePieceDetails(id, event) {
+  if (event) event.stopPropagation();
+  expandedPieceId = expandedPieceId === id ? null : id;
+  const pos = $("viewport").scrollLeft;
+  render();
+  $("viewport").scrollLeft = pos;
+}
 function render(scrollTarget = null) {
   todayDay = localToday();
-  //$("todayLabel").textContent = formatDay(todayDay, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
   const head = $("head"), body = $("body");
   head.replaceChildren(); body.replaceChildren();
   const headRow = document.createElement("tr");
@@ -147,10 +156,17 @@ function render(scrollTarget = null) {
   head.append(headRow);
   for (const piece of pieces) {
     const row = document.createElement("tr");
-    const label = makeCell("th", null, "piece");
+    const label = makeCell("th", null, `piece${expandedPieceId === piece.id ? " expanded" : ""}`);
     label.scope = "row";
-    const details = `${piece.werknummer} · ${piece.tonart} · alle ${piece.intervallTage} Tage${piece.dauerMinuten != null ? ` · ${piece.dauerMinuten} Min.` : ""}`;
-    label.append(makeCell("strong", piece.titel), makeCell("small", details));
+    const title = makeCell("button", piece.titel, "piece-title");
+    title.type = "button";
+    title.setAttribute("aria-expanded", String(expandedPieceId === piece.id));
+    title.setAttribute("aria-label", `${piece.titel}: Details ${expandedPieceId === piece.id ? "schließen" : "anzeigen"}`);
+    title.addEventListener("click", event => togglePieceDetails(piece.id, event));
+    label.append(title);
+    const details = makeCell("small", `${piece.werknummer} · ${piece.tonart} · alle ${piece.intervallTage} Tage${piece.dauerMinuten != null ? ` · ${piece.dauerMinuten} Min.` : ""}`, "piece-details");
+    details.hidden = expandedPieceId !== piece.id;
+    label.append(details);
     row.append(label);
     for (let d = startDay; d <= endDay; d++) row.append(makeDayCell(piece, d));
     body.append(row);
@@ -163,6 +179,8 @@ function render(scrollTarget = null) {
   for (let d = startDay; d <= endDay; d++) totalRow.append(makeTotalCell(d));
   body.append(totalRow);
   if (scrollTarget !== null) scrollToDay(scrollTarget);
+  const repertoire = $("repertoireMinutes");
+  if (repertoire) repertoire.textContent = `Repertoire: ${repertoireMinutes()} Min.`;
 }
 function scrollToDay(day) {
   const cell = [...$("head").querySelectorAll("[data-day]")].find(el => Number(el.dataset.day) === day);

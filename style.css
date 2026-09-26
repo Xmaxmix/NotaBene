@@ -1,7 +1,8 @@
 :root{
     font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     color:#202b40;
-    background:#f5f7fb
+    background:#f5f7fb;
+    font-size: .9rem;
 }
 *{
     box-sizing:border-box
@@ -18,85 +19,56 @@ body{
     justify-content:space-between;
     gap:1rem
 }
-.topbar h1{
+.topbar h1 {
     font-size:1.35rem;
-    margin:0
+    padding-left: 2rem;
+    margin:0;
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNjQwIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMjA4IDY0QzIxNi44IDY0IDIyNCA3MS4yIDIyNCA4MEwyMjQgMTI4TDQxNiAxMjhMNDE2IDgwQzQxNiA3MS4yIDQyMy4yIDY0IDQzMiA2NEM0NDAuOCA2NCA0NDggNzEuMiA0NDggODBMNDQ4IDEyOEw0ODAgMTI4QzUxNS4zIDEyOCA1NDQgMTU2LjcgNTQ0IDE5Mkw1NDQgNDgwQzU0NCA1MTUuMyA1MTUuMyA1NDQgNDgwIDU0NEwxNjAgNTQ0QzEyNC43IDU0NCA5NiA1MTUuMyA5NiA0ODBMOTYgMTkyQzk2IDE1Ni43IDEyNC43IDEyOCAxNjAgMTI4TDE5MiAxMjhMMTkyIDgwQzE5MiA3MS4yIDE5OS4yIDY0IDIwOCA2NHpNNDgwIDE2MEwxNjAgMTYwQzE0Mi4zIDE2MCAxMjggMTc0LjMgMTI4IDE5MkwxMjggMjI0TDUxMiAyMjRMNTEyIDE5MkM1MTIgMTc0LjMgNDk3LjcgMTYwIDQ4MCAxNjB6TTUxMiAyNTZMNDE2IDI1Nkw0MTYgMzIwTDUxMiAzMjBMNTEyIDI1NnpNNTEyIDM1Mkw0MTYgMzUyTDQxNiA0MTZMNTEyIDQxNkw1MTIgMzUyek01MTIgNDQ4TDQxNiA0NDhMNDE2IDUxMkw0ODAgNTEyQzQ5Ny43IDUxMiA1MTIgNDk3LjcgNTEyIDQ4MEw1MTIgNDQ4ek0zODQgNDE2TDM4NCAzNTJMMjU2IDM1MkwyNTYgNDE2TDM4NCA0MTZ6TTI1NiA0NDhMMjU2IDUxMkwzODQgNTEyTDM4NCA0NDhMMjU2IDQ0OHpNMjI0IDQxNkwyMjQgMzUyTDEyOCAzNTJMMTI4IDQxNkwyMjQgNDE2ek0xMjggNDQ4TDEyOCA0ODBDMTI4IDQ5Ny43IDE0Mi4zIDUxMiAxNjAgNTEyTDIyNCA1MTJMMjI0IDQ0OEwxMjggNDQ4ek0xMjggMzIwTDIyNCAzMjBMMjI0IDI1NkwxMjggMjU2TDEyOCAzMjB6TTI1NiAzMjBMMzg0IDMyMEwzODQgMjU2TDI1NiAyNTZMMjU2IDMyMHoiLz48L3N2Zz4=');
+    background-repeat: no-repeat;
 }
 .topbar p{
     margin:.25rem 0 0;
     color:#ccd5e4;
-    font-size:.9rem
 }
-.topbar span{
-    font-size:.9rem;
-    white-space:nowrap
+.topbar-main{
+    min-width:0
 }
-main{
-    padding:1rem
-}
-.toolbar,.legend{
+.toolbar{
     display:flex;
     flex-wrap:wrap;
     gap:.55rem;
-    align-items:center;
-    margin-bottom:.0;
-}
-.legend {
-    margin: .85rem 0;
-}
-#notice:empty {
-    display: none;
-}
-button{
-    font:inherit;
-    cursor:pointer
-}
-button:focus-visible{
-    outline:3px solid #156bdb;
-    outline-offset:2px
+    align-items:center
 }
 .toolbar button{
+    font:inherit;
+    cursor:pointer;
     padding:.55rem .7rem;
     border:1px solid rgba(255,255,255,.5);
     border-radius:.55rem;
     background:transparent;
-    color:rgba(255,255,255,.67);
+    color:rgba(255,255,255,.67)
 }
 .toolbar button:active{
     background:#edf3fb
+}
+.toolbar button:focus-visible,.piece-title:focus-visible{
+    outline:3px solid #156bdb;
+    outline-offset:2px
+}
+main{
+    padding:1rem
+}
+#notice:empty{
+    display:none
 }
 #notice{
     min-height:1.5rem;
     color:#7b2c28;
     margin-bottom:.35rem
 }
-.legend{
-    font-size:.85rem;
-    color:#485971;
-    gap:1rem
-}
-.dot{
-    display:inline-block;
-    width:.65rem;
-    height:.65rem;
-    border-radius:50%;
-    margin-right:.35rem
-}
-.due{
-    background:#e9af2e
-}
-.late{
-    background:#db6753
-}
-.done{
-    background:#319766
-}
-.projected{
-    background:#7894bc
-}
 .viewport{
     overflow:auto;
-    max-height:calc(100dvh - 230px);
+    max-height:calc(100dvh - 130px);
     min-height:280px;
     border:1px solid #d2dce9;
     border-radius:.65rem;
@@ -125,7 +97,6 @@ thead th{
     z-index:2;
     background:#e8edf5;
     height:54px;
-    font-size:.82rem
 }
 thead th small{
     display:block;
@@ -136,24 +107,39 @@ thead th small{
     position:sticky;
     left:0;
     z-index:1;
-    width:220px;
-    min-width:220px;
-    max-width:220px;
+    width:250px;
+    min-width:250px;
+    max-width:250px;
     text-align:left;
-    padding:.5rem .65rem;
+    padding:.35rem .65rem;
     background:#fff;
     box-shadow:2px 0 5px #25344b12
 }
 .piece strong{
     display:block;
-    font-size:.9rem;
     line-height:1.2
 }
-.piece small{
-    display:none;
+.piece-title{
+    display:block;
+    width:100%;
+    padding:0;
+    border:0;
+    background:transparent;
+    color:#202b40;
+    font:inherit;
+    font-weight:600;
+    text-align:left;
+    cursor:pointer
+}
+.piece-details{
+    display:block;
     color:#63738a;
     margin-top:.18rem;
-    font-size:.78rem
+    font-size:.75rem;
+    font-weight: normal;
+}
+.piece-details[hidden]{
+    display:none
 }
 .headpiece{
     z-index:3!important;
@@ -163,7 +149,7 @@ thead th small{
     background:#f2f7ff
 }
 .day-cell{
-    font-size:.79rem;
+    font-size:.75rem;
     color:#627087
 }
 .state-due{
@@ -218,8 +204,48 @@ thead th small{
 .total-row .today-col{
     background:#dceaff
 }
+footer{
+    margin-top:.85rem
+}
+.footer-columns {
+    display: flex;
+    justify-content: space-between;
+}
+.legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem;
+    align-items:center;
+    font-size:.9rem;
+    color:#485971
+}
+.dot{
+    display:inline-block;
+    width:.65rem;
+    height:.65rem;
+    border-radius:50%;
+    margin-right:.35rem
+}
+.due{
+    background:#e9af2e
+}
+.late{
+    background:#db6753
+}
+.done{
+    background:#319766
+}
+.projected{
+    background:#7894bc
+}
+.repertoire-total{
+    font-size:.9rem;
+    font-weight:700;
+    color:#203b5c
+}
 .hint{
-    font-size:.82rem;
+    margin-top: .9rem;
+    font-size:.9rem;
     color:#51627b;
     line-height:1.45
 }
@@ -229,6 +255,10 @@ code{
     border-radius:.2rem
 }
 @media(max-width:600px){
+    .topbar{
+        align-items:flex-start;
+        flex-direction:column
+    }
     .topbar span{
         display:none
     }
