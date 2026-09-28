@@ -79,10 +79,15 @@ function statusFor(piece, day, actualToday) {
   if (sessions.includes(day)) return "done";
   if (day < first && sessions.every(d => d > day)) return "";
   if (day > actualToday) {
-    let next = sessions.length ? sessions.at(-1) + piece.intervallTage : first;
-    if (next <= actualToday) next = actualToday + 1;
-    return day >= next && (day - next) % piece.intervallTage === 0 ? "projected" : "";
-  }
+  if (!sessions.length) return "";
+
+  const next = sessions.at(-1) + piece.intervallTage;
+  if (next <= actualToday) return "";
+
+  return day >= next && (day - next) % piece.intervallTage === 0
+    ? "projected"
+    : "";
+}
   let last = null;
   for (const practiced of sessions) {
     if (practiced >= day) break;
