@@ -5,7 +5,7 @@
     "werknummer": "BWV 772",
     "tonart": "C-Dur",
     "intervallTage": 6,
-    "ersterTermin": "2026-09-28",
+    "ersterTermin": "2026-10-17",
     "dauerMinuten": 2
   },
   {
@@ -14,7 +14,7 @@
     "werknummer": "BWV 787",
     "tonart": "C-Dur",
     "intervallTage": 4,
-    "ersterTermin": "2026-09-29",
+    "ersterTermin": "2026-10-18",
     "dauerMinuten": 2
   },
   {
@@ -23,7 +23,7 @@
     "werknummer": "BWV 788",
     "tonart": "C-Moll",
     "intervallTage": 3,
-    "ersterTermin": "2026-09-28",
+    "ersterTermin": "2026-10-17",
     "dauerMinuten": 3
   },
   {
@@ -32,7 +32,7 @@
     "werknummer": "BWV 775",
     "tonart": "d-Moll",
     "intervallTage": 7,
-    "ersterTermin": "2026-09-30",
+    "ersterTermin": "2026-10-19",
     "dauerMinuten": 3
   },
   {
@@ -41,7 +41,7 @@
     "werknummer": "BWV 790",
     "tonart": "d-Moll",
     "intervallTage": 4,
-    "ersterTermin": "2026-09-28",
+    "ersterTermin": "2026-10-17",
     "dauerMinuten": 3
   },
   {
@@ -50,7 +50,7 @@
     "werknummer": "BWV 780",
     "tonart": "f-Moll",
     "intervallTage": 5,
-    "ersterTermin": "2026-09-29",
+    "ersterTermin": "2026-10-18",
     "dauerMinuten": 2
   },
   {
@@ -59,7 +59,7 @@
     "werknummer": "BWV 795",
     "tonart": "f-Moll",
     "intervallTage": 5,
-    "ersterTermin": "2026-09-28",
+    "ersterTermin": "2026-10-17",
     "dauerMinuten": 3
   },
   {
@@ -68,7 +68,7 @@
     "werknummer": "BWV 797",
     "tonart": "g-Moll",
     "intervallTage": 3,
-    "ersterTermin": "2026-09-29",
+    "ersterTermin": "2026-10-18",
     "dauerMinuten": 2
   },
   {
@@ -77,7 +77,7 @@
     "werknummer": "BWV 846",
     "tonart": "C-Dur",
     "intervallTage": 6,
-    "ersterTermin": "2026-09-30",
+    "ersterTermin": "2026-10-19",
     "dauerMinuten": 2
   },
   {
@@ -86,7 +86,7 @@
     "werknummer": "BWV 846",
     "tonart": "C-Dur",
     "intervallTage": 3,
-    "ersterTermin": "2026-09-29",
+    "ersterTermin": "2026-10-18",
     "dauerMinuten": 3
   },
   {
@@ -95,7 +95,7 @@
     "werknummer": "BWV 988",
     "tonart": "G-Dur",
     "intervallTage": 2,
-    "ersterTermin": "2026-09-28",
+    "ersterTermin": "2026-10-18",
     "dauerMinuten": 2
   },
   {
@@ -104,7 +104,7 @@
     "werknummer": "BWV 988",
     "tonart": "G-Dur",
     "intervallTage": 2,
-    "ersterTermin": "2026-09-28",
+    "ersterTermin": "2026-10-17",
     "dauerMinuten": 2
   },
   {
@@ -113,7 +113,7 @@
     "werknummer": "BWV 988",
     "tonart": "g-Moll",
     "intervallTage": 2,
-    "ersterTermin": "2026-09-28",
+    "ersterTermin": "2026-10-17",
     "dauerMinuten": 2
   },
   {
@@ -122,7 +122,7 @@
     "werknummer": "BWV 988",
     "tonart": "g-Moll",
     "intervallTage": 3,
-    "ersterTermin": "2026-09-27",
+    "ersterTermin": "2026-10-25",
     "dauerMinuten": 3
   },
   {
@@ -131,7 +131,7 @@
     "werknummer": "BWV 988",
     "tonart": "g-Dur",
     "intervallTage": 4,
-    "ersterTermin": "2026-09-27",
+    "ersterTermin": "2026-10-25",
     "dauerMinuten": 2
   },
   {
@@ -140,7 +140,7 @@
     "werknummer": "BWV 988",
     "tonart": "g-Moll",
     "intervallTage": 2,
-    "ersterTermin": "2026-09-27",
+    "ersterTermin": "2026-10-18",
     "dauerMinuten": 8
   },
   {
@@ -149,7 +149,7 @@
     "werknummer": "BWV 1068",
     "tonart": "D-Dur",
     "intervallTage": 5,
-    "ersterTermin": "2026-09-27",
+    "ersterTermin": "2026-10-25",
     "dauerMinuten": 3
   },
   {
@@ -158,7 +158,7 @@
     "werknummer": "BWV 147",
     "tonart": "G-Dur",
     "intervallTage": 4,
-    "ersterTermin": "2026-09-30",
+    "ersterTermin": "2026-10-19",
     "dauerMinuten": 3
   }
 ]

@@ -15,6 +15,7 @@
             </div>
             <div class="toolbar">
                 <button id="goToday" type="button">Heute anzeigen</button
+                ><button id="pauseBtn" type="button" aria-pressed="false">Pause</button
                 ><button id="exportBtn" type="button">Backup exportieren</button
                 ><button id="importBtn" type="button">Backup importieren</button
                 ><input id="importFile" type="file" accept="application/json,.json" hidden />
@@ -33,7 +34,8 @@
                     <div id="repertoireMinutes" class="repertoire-total"></div>
                     <div class="legend">
                         <span><i class="dot due"></i>Fällig</span><span><i class="dot late"></i>Überfällig</span
-                        ><span><i class="dot done"></i>Geübt</span><span><i class="dot projected"></i>Voraussichtlich</span>
+                        ><span><i class="dot done"></i>Geübt</span><span><i class="dot projected"></i>Voraussichtlich</span
+                        ><span><i class="dot paused"></i>Pause</span>
                     </div>
                 </div>
                 <p class="hint">Ein Häkchen heute setzt den nächsten Termin.<br>
