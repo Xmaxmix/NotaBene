@@ -4,7 +4,7 @@
     "titel": "Inventio 1",
     "werknummer": "BWV 772",
     "tonart": "C-Dur",
-    "intervallTage": 6,
+    "intervallTage": 4,
     "ersterTermin": "2026-10-17",
     "dauerMinuten": 2
   },
@@ -13,7 +13,7 @@
     "titel": "Sinfonia 1",
     "werknummer": "BWV 787",
     "tonart": "C-Dur",
-    "intervallTage": 4,
+    "intervallTage": 2,
     "ersterTermin": "2026-10-18",
     "dauerMinuten": 2
   },
@@ -22,7 +22,7 @@
     "titel": "Sinfonia 2",
     "werknummer": "BWV 788",
     "tonart": "C-Moll",
-    "intervallTage": 3,
+    "intervallTage": 2,
     "ersterTermin": "2026-10-17",
     "dauerMinuten": 3
   },
@@ -49,8 +49,8 @@
     "titel": "Inventio 9",
     "werknummer": "BWV 780",
     "tonart": "f-Moll",
-    "intervallTage": 5,
-    "ersterTermin": "2026-10-18",
+    "intervallTage": 4,
+    "ersterTermin": "2026-10-17",
     "dauerMinuten": 2
   },
   {
@@ -58,7 +58,7 @@
     "titel": "Sinfonia 9",
     "werknummer": "BWV 795",
     "tonart": "f-Moll",
-    "intervallTage": 5,
+    "intervallTage": 4,
     "ersterTermin": "2026-10-17",
     "dauerMinuten": 3
   },
@@ -130,7 +130,7 @@
     "titel": "GV Variatio 22 Alla Breve",
     "werknummer": "BWV 988",
     "tonart": "g-Dur",
-    "intervallTage": 4,
+    "intervallTage": 3,
     "ersterTermin": "2026-10-25",
     "dauerMinuten": 2
   },
@@ -148,7 +148,7 @@
     "titel": "Air",
     "werknummer": "BWV 1068",
     "tonart": "D-Dur",
-    "intervallTage": 5,
+    "intervallTage": 4,
     "ersterTermin": "2026-10-25",
     "dauerMinuten": 3
   },
