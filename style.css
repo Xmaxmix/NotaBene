@@ -96,7 +96,7 @@ button:focus-visible{
 }
 .viewport{
     overflow:auto;
-    max-height:calc(100dvh - 230px);
+    max-height:calc(100dvh - 160px);
     min-height:280px;
     border:1px solid #d2dce9;
     border-radius:.65rem;
@@ -268,6 +268,16 @@ code{
 }
 .dot.paused{
     background:#8a9bb3
+}
+.retro {
+  width: 100%;
+  min-height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
 }
 @media(max-width:600px){
     .topbar span{

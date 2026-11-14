@@ -122,11 +122,13 @@ function makeDayCell(piece, day) {
   const state = statusFor(piece, day, todayDay);
   const td = makeCell("td", null, `day-cell${day === todayDay ? " today-col" : ""}${state ? ` state-${state}` : ""}`);
   td.dataset.day = day;
+
   if (day === todayDay) {
     if (state === "paused") {
       td.append(makeCell("span", "Pause", "pause-label"));
       return td;
     }
+
     const done = state === "done";
     const btn = makeCell("button", done ? "✓ Geübt" : state === "late" ? "Überfällig" : state === "due" ? "Fällig" : "Üben");
     btn.type = "button";
@@ -135,8 +137,33 @@ function makeDayCell(piece, day) {
     btn.setAttribute("aria-pressed", String(done));
     btn.addEventListener("click", () => toggleToday(piece.id));
     td.append(btn);
-  } else if (state) td.textContent = { due: "Fällig", late: "Überfällig", done: "✓ Geübt", projected: "Geplant", paused: "Pause" }[state];
-  else td.textContent = "·";
+    return td;
+  }
+
+  if (day < todayDay && pauseFromDay === null) {
+    const done = state === "done";
+    const label = done ? "✓ Geübt" : state === "late" ? "Überfällig" : state === "due" ? "Fällig" : "·";
+
+    const btn = makeCell("button", label, "retro");
+    btn.type = "button";
+    btn.setAttribute("aria-label", `${piece.titel}: ${done ? "Übung am" : "Übung nachtragen am"} ${formatDay(day, { day: "2-digit", month: "2-digit", year: "numeric" })}`);
+    btn.addEventListener("click", () => togglePast(piece.id, day));
+    td.append(btn);
+    return td;
+  }
+
+  if (state) {
+    td.textContent = {
+      due: "Fällig",
+      late: "Überfällig",
+      done: "✓ Geübt",
+      projected: "Geplant",
+      paused: "Pause"
+    }[state];
+  } else {
+    td.textContent = "·";
+  }
+
   return td;
 }
 function totalForDay(day) {
@@ -229,6 +256,43 @@ function render(scrollTarget = null) {
 function scrollToDay(day) {
   const cell = [...$("head").querySelectorAll("[data-day]")].find(el => Number(el.dataset.day) === day);
   if (cell) $("viewport").scrollLeft = Math.max(0, cell.offsetLeft - $("head").querySelector(".headpiece").offsetWidth);
+}
+function togglePast(id, day) {
+  if (day >= todayDay) return;
+  if (pauseFromDay !== null) {
+    notice("Während einer Pause können zurückliegende Übungen nicht nachgetragen werden.");
+    return;
+  }
+
+  try {
+    const date = dayToDate(day);
+    const next = validateLogs(logs);
+    const set = new Set(next[id] || []);
+    const alreadyDone = set.has(date);
+
+    const action = alreadyDone
+      ? `Die Übung von ${pieceTitle(id)} am ${formatDay(day, { day: "2-digit", month: "2-digit", year: "numeric" })} entfernen?`
+      : `Eine Übung von ${pieceTitle(id)} am ${formatDay(day, { day: "2-digit", month: "2-digit", year: "numeric" })} nachtragen?`;
+
+    if (!confirm(`${action}\n\nDie künftigen Wiederholtermine werden neu berechnet.`)) return;
+
+    if (alreadyDone) set.delete(date);
+    else set.add(date);
+
+    next[id] = [...set].sort(compareDays);
+    saveLogs(next);
+
+    const pos = $("viewport").scrollLeft;
+    render();
+    $("viewport").scrollLeft = pos;
+    notice(alreadyDone ? "Übung entfernt." : "Übung nachgetragen.");
+  } catch (err) {
+    notice(`Nicht gespeichert: ${err.message}`);
+  }
+}
+
+function pieceTitle(id) {
+  return pieces.find(piece => piece.id === id)?.titel ?? id;
 }
 function toggleToday(id) {
   if (localToday() !== todayDay) { refreshDate(); return; }
